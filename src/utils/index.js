@@ -1,10 +1,14 @@
+import { doLogout } from "../actions/auth";
+
+//To concate the path for the public folder
+export const toAbsoluteUrl = pathname => (process.env.PUBLIC_URL + pathname)
 
 export const setupAxios = (axios, store) => {
     axios.interceptors.request.use(req => {
         const { auth: { user } } = store.getState();
 
-        if (user && user.authToken) {
-            req.headers["X-Auth-Token"] = `${user.authToken}`;
+        if (user && user.token) {
+            req.headers["Authorization"] = `Bearer ${user.token}`;
         }
 
         return req;
@@ -12,8 +16,8 @@ export const setupAxios = (axios, store) => {
 
     axios.interceptors.response.use(null, (err) => {
         if (err.response) {
-            if (err.response.status === 401) {
-                // store.dispatch(doLogout())
+            if (err.response.status === 403) {
+                store.dispatch(doLogout())
 
                 return Promise.reject(err);
             } else return Promise.reject(err);

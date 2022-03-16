@@ -1,13 +1,16 @@
 import React, { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 
-const ScrollToTop = (props) => {
+const ScrollToTop = ({ children }) => {
+    const location = useLocation();
+
     useEffect(() => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
-    }, [props.location]);
+    }, [location]);
 
     return (
         <>
-            {props.children}
+            {children}
         </>
     );
 }

@@ -1,12 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.scss';
-import AppContainer from './container';
+import App from './container';
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.StrictMode>
-    <AppContainer />
+    <App />
   </React.StrictMode>,
   document.getElementById('root')
 );

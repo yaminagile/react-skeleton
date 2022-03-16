@@ -1,5 +1,4 @@
-import { API_REQUEST, API_SUCCESS, API_ERROR } from "../constants/types"
-
+import { API_REQUEST, API_SUCCESS, API_ERROR } from "../constants/types";
 
 export const fetchRequested = props => ({
     type: API_REQUEST,

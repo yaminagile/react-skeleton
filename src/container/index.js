@@ -1,27 +1,27 @@
 import React, { Suspense } from 'react';
 import axios from 'axios';
 import { Provider } from "react-redux";
-import { PersistGate } from "redux-persist/integration/react";
 import { BrowserRouter } from 'react-router-dom';
-import store, { persistor } from '../store';
+import store from '../store';
 import Routes from './routes';
 import ScrollToTop from '../components/common/scroll';
+import Loader from '../components/common/loader';
 import { setupAxios } from '../utils';
 const { PUBLIC_URL } = process.env;
 
 setupAxios(axios, store);
 
 const AppContainer = () => (
-    <Provider store={store} loading={null}>
-        <PersistGate persistor={persistor} loading={null}>
-            <Suspense fallback={null}>
+    <Provider store={store}>
+        <Suspense fallback={<Loader isSuspense />}>
+            <Loader>
                 <BrowserRouter basename={PUBLIC_URL}>
                     <ScrollToTop>
                         <Routes />
                     </ScrollToTop>
                 </BrowserRouter>
-            </Suspense>
-        </PersistGate>
+            </Loader>
+        </Suspense>
     </Provider>
 )
 

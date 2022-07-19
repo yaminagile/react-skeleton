@@ -28,3 +28,12 @@ export const doLogin = (data) => ({
 export const doLogout = () => ({
     type: LOGOUT
 })
+
+export const dummyLogin = () => ({
+    type: LOGIN_S,
+    payload: {
+        id: 1,
+        name: 'John Doe',
+        token: 'dummy-auth-token',
+    }
+})

@@ -2,12 +2,12 @@ import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
-let AuthGuard = ({ children }) => {
+const AuthGuard = ({ children }) => {
     const navigate = useNavigate();
     const isLoggedIn = useSelector(s => !!s?.auth?.user?.token);
 
     useEffect(() => {
-        if (!isLoggedIn) navigate('/signin');
+        if (!isLoggedIn) navigate('/signin', { replace: true });
     }, [isLoggedIn, navigate])
 
     return (

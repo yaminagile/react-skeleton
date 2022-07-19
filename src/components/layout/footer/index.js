@@ -5,7 +5,7 @@ const Footer = () => {
 
     return (
         <>
-
+            In Footer
         </>
     );
 }

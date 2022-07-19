@@ -1,5 +1,4 @@
 import {
-    LOGIN_I,
     LOGIN_S,
     LOGIN_F,
     LOGOUT,
@@ -7,17 +6,16 @@ import {
 
 const initialState = {
     user: undefined,
-    intermediate: undefined
 };
 
 const authReducer = (state = initialState, action) => {
     switch (action.type) {
-        case LOGIN_I:
-            return { ...state, intermediate: action.payload };
         case LOGIN_S:
-            return { ...state, user: state.intermediate, intermediate: undefined };
+            localStorage.setItem('user', JSON.stringify(action.payload));
+            return { ...state, user: action.payload };
         case LOGIN_F:
         case LOGOUT:
+            localStorage.removeItem('user');
             return initialState;
         default:
             return state;

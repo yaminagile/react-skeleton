@@ -1,22 +1,20 @@
-import React from 'react';
+import React, { lazy } from 'react';
+import { Outlet } from 'react-router-dom';
 
-import Header from './header';
-import Footer from './footer';
+const Header = lazy(() => import('./header'))
+const Footer = lazy(() => import('./footer'))
 
-const withLayout = Content => {
+const Layout = () => {
 
-    let Layout = () => {
-
-        return (
-            <>
-                <Header />
-                <Content />
-                <Footer />
-            </>
-        )
-    }
-
-    return Layout;
+    return (
+        <>
+            <Header />
+            <main>
+                <Outlet />
+            </main>
+            <Footer />
+        </>
+    )
 }
 
-export default withLayout;
+export default Layout;
